@@ -9,6 +9,7 @@ import lombok.*;
 @Setter
 
 public class SchoolPen {
+    private static SchoolPen instance = new SchoolPen();
     private String id = "isn-101";
     private String brand;
     private String color;
@@ -17,11 +18,6 @@ public class SchoolPen {
     private int numPencils;
     private int numPens;
     private int numErasers;
-    private static SchoolPen instance = new SchoolPen();
-
-    public static SchoolPen getInstance() {
-        return instance;
-    }
 
     public SchoolPen(String brand, String color, String material, double size, int numPencils, int numPens, int numErasers) {
         this.brand = brand;
@@ -33,24 +29,8 @@ public class SchoolPen {
         this.numErasers = numErasers;
     }
 
-    public void addPencil() {
-        numPencils++;
-    }
-
-    public void addPen() {
-        numPens++;
-    }
-
-    public void removePencil() {
-        if (numPencils > 0) {
-            numPencils--;
-        }
-    }
-
-    public void removePen() {
-        if (numPens > 0) {
-            numPens--;
-        }
+    public static SchoolPen getInstance() {
+        return instance;
     }
 
     public static void main(String[] args) {
@@ -63,6 +43,30 @@ public class SchoolPen {
 
         for (SchoolPen schoolPen : schoolPens) {
             System.out.println("School Pen ID: " + schoolPen.getId());
+        }
+    }
+
+    public void addPencil() {
+        numPencils++;
+    }
+
+    public void addPen() {
+        numPens++;
+    }
+
+    public void removePencil() {
+        if (numPencils == 0) {
+            return;
+        }  {
+            numPencils--;
+        }
+    }
+
+    public void removePen() {
+        if (numPens == 0) {
+            return;
+        }  {
+            numPens--;
         }
     }
 }
